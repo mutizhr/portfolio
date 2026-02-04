@@ -1,627 +1,620 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio Mutiara Az Zahra - Mahasiswa Teknologi Informasi | UI/UX, Web Development, System Analysis">
+    <meta property="og:title" content="Mutiara Az Zahra • Portfolio">
+    <meta property="og:description" content="Mahasiswa TI semester 5 | Tertarik web dev, UI/UX, dan system analysis. Open for internship!">
+    <meta property="og:image" content="pic/pasfoto.png">
     <title>Mutiara Az Zahra • Portfolio</title>
+
+    <!-- Favicon Section -->
+    <link rel="icon" type="image/png" href="pic/favicon.png">
+    <link rel="icon" type="image/x-icon" href="pic/favicon.png">
+    <link rel="apple-touch-icon" href="pic/favicon.png">
+    <link rel="icon" sizes="192x192" href="pic/favicon.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
             --bg: #0f0f1a;
-            --bg-card: rgba(20, 20, 35, 0.65);
-            --text: #e0e0ff;
-            --text-muted: #a0a0cc;
+            --bg-card: rgba(20, 20, 35, 0.75);
+            --text: #f0f0ff;
+            --text-muted: #c0c0e0;
             --primary: #7b5eff;
-            --primary-dark: #5a44d4;
             --accent: #ff61d2;
             --gradient: linear-gradient(135deg, #7b5eff 0%, #ff61d2 100%);
-            --glass: rgba(255,255,255,0.07);
+            --glass: rgba(255,255,255,0.08);
             --blur: blur(16px);
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition: all 0.35s ease;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        [data-theme="light"] {
+            --bg: #f8f9ff;
+            --bg-card: rgba(255, 255, 255, 0.9);
+            --text: #1a1a2e;
+            --text-muted: #4a4a6a;
+            --glass: rgba(0,0,0,0.05);
         }
 
         body {
             font-family: 'Poppins', sans-serif;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.6;
+            line-height: 1.7;
             min-height: 100vh;
+            transition: var(--transition);
             background-image: 
-                radial-gradient(circle at 15% 50%, rgba(123,94,255,0.08) 0%, transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(255,97,210,0.06) 0%, transparent 35%);
+                radial-gradient(circle at 15% 50%, rgba(123,94,255,0.06) 0%, transparent 30%),
+                radial-gradient(circle at 85% 30%, rgba(255,97,210,0.05) 0%, transparent 40%);
             background-attachment: fixed;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 5vw;
+        .gradient-text {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
-        a { color: inherit; text-decoration: none; }
-
-        /* Navbar */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 1.4rem 0;
-            background: rgba(15,15,26,0.75);
+        .glass-card {
+            background: var(--bg-card);
             backdrop-filter: var(--blur);
-            -webkit-backdrop-filter: var(--blur);
-            border-bottom: 1px solid rgba(123,94,255,0.12);
+            border: 1px solid rgba(123,94,255,0.12);
         }
 
-        .nav-wrapper {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        [data-theme="light"] .glass-card {
+            border: 1px solid rgba(123,94,255,0.08);
         }
 
-        .logo {
-            font-size: 1.6rem;
-            font-weight: 700;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            font-weight: 500;
-            color: var(--text-muted);
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: white;
-        }
-
-        .nav-links a::after {
+        .gradient-border::before {
             content: '';
             position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -6px;
-            left: 0;
-            background: var(--gradient);
-            transition: width 0.4s ease;
-        }
-
-        .nav-links a:hover::after { width: 100%; }
-
-        .btn-contact {
-            background: var(--gradient);
-            padding: 0.7rem 1.6rem;
-            border-radius: 50px;
-            font-weight: 600;
-            box-shadow: 0 0 20px rgba(123,94,255,0.3);
-            transition: var(--transition);
-        }
-
-        .btn-contact:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 0 35px rgba(123,94,255,0.5);
-        }
-
-        /* Hero */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 8rem 0 4rem;
-        }
-
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-text h1 {
-            font-size: clamp(3.2rem, 8vw, 5.5rem);
-            font-weight: 700;
-            line-height: 1.05;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 1rem;
-        }
-
-        .hero-text h3 {
-            font-size: 1.4rem;
-            color: var(--primary);
-            margin-bottom: 1.2rem;
-            font-weight: 500;
-        }
-
-        .hero-text p {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            max-width: 480px;
-            margin-bottom: 2.5rem;
-        }
-
-        .cta-group {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            background: var(--gradient);
-            color: white;
-            padding: 0.9rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            box-shadow: 0 8px 30px rgba(123,94,255,0.25);
-            transition: var(--transition);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 40px rgba(123,94,255,0.4);
-        }
-
-        .btn-outline {
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            padding: 0.85rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-            box-shadow: 0 0 25px rgba(123,94,255,0.3);
-        }
-
-        .hero-image {
-            position: relative;
-            display: flex;
-            justify-content: center;
-        }
-
-        .profile-pic {
-            width: 320px;
-            height: 320px;
+            inset: -12px;
             border-radius: 50%;
             background: var(--gradient);
-            padding: 6px;
-            position: relative;
-        }
-
-        .profile-pic::before {
-            content: '';
-            position: absolute;
-            inset: -15px;
-            border-radius: 50%;
-            background: var(--gradient);
-            filter: blur(30px);
-            opacity: 0.6;
+            filter: blur(25px);
+            opacity: 0.5;
             z-index: -1;
         }
 
-        .profile-pic img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid rgba(15,15,26,0.9);
-        }
-
-        /* Section Title */
-        .section {
-            padding: 7rem 0;       
+        [data-theme="light"] .gradient-border::before {
+            opacity: 0.4;
         }
 
         .section-title {
-            font-size: 2.8rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 2.5rem;
             background: linear-gradient(90deg, transparent, var(--primary), var(--accent), transparent);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            position: relative;
         }
 
-        /* About */
-        #about .about-desc {
-            max-width: 780px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            text-align: center;
-            line-height: 1.8; 
-        }
-
-        /* Skills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 2rem;
-            padding: 1rem 0;          /* sedikit padding atas-bawah grid */
-        }
-
-        .skill-card {
-            background: var(--bg-card);
-            backdrop-filter: var(--blur);
-            border: 1px solid rgba(123,94,255,0.15);
-            border-radius: 20px;   /* lebih rounded biar soft */
-            padding: 2.5rem 1.8rem;  /* padding atas-bawah lebih besar */
-            text-align: center;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 180px;     /* tinggi minimal biar rapi */
-        }
-
-        .skill-card:hover {
-            transform: translateY(-10px) scale(1.04);
-            border-color: var(--primary);
-            box-shadow: 0 0 35px rgba(123,94,255,0.22);
-        }
-
-        .skill-card i {
-            font-size: 3rem;          /* icon lebih besar & menonjol */
-            margin-bottom: 1.4rem;    /* jarak icon ke teks lebih lega */
-            background: var(--gradient);
+        [data-theme="light"] .section-title {
+            background: linear-gradient(90deg, transparent, #7b5eff, #ff61d2, transparent);
             -webkit-background-clip: text;
             background-clip: text;
-            color: transparent;
-            line-height: 1;
         }
 
-        .skill-card span {
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: var(--text);
-            line-height: 1.4;
+        .tag {
+            background: rgba(123,94,255,0.16);
+            color: var(--primary);
         }
 
-        /* Projects */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 2.2rem;
+        [data-theme="light"] .tag {
+            background: rgba(123,94,255,0.1);
+            color: #7b5eff;
         }
 
-        .project-card {
-            background: var(--bg-card);
-            backdrop-filter: var(--blur);
-            border: 1px solid rgba(123,94,255,0.12);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: var(--transition);
+        .gradient-bg {
+            background: var(--gradient);
         }
 
-        .project-card:hover {
-            transform: translateY(-12px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(123,94,255,0.15);
+        [data-theme="light"] .text-gray-300 {
+            color: #4a4a6a;
         }
 
-        .project-img {
-            height: 0;                   /* trik padding-bottom hack */
-            padding-bottom: 56.25%;      /* 16:9 ratio → 9/16 = 0.5625 → 56.25% */
+        [data-theme="light"] .text-gray-400 {
+            color: #666687;
+        }
+
+        [data-theme="light"] .border-purple-500\/15 {
+            border-color: rgba(123,94,255,0.1);
+        }
+
+        [data-theme="light"] a:hover {
+            color: #7b5eff;
+        }
+
+        .mobile-menu-enter {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        .mobile-menu-enter-active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 300ms, transform 300ms;
+        }
+
+        .mobile-menu-exit {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-menu-exit-active {
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 300ms, transform 300ms;
+        }
+
+        /* Custom container untuk memberikan margin yang lebih baik */
+        .custom-container {
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .custom-container {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .custom-container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .custom-container {
+                padding-left: 3rem;
+                padding-right: 3rem;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .custom-container {
+                padding-left: 4rem;
+                padding-right: 4rem;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Responsive improvements */
+        @media (max-width: 640px) {
+            .hero-section {
+                padding-top: 6rem !important;
+            }
+            
+            .profile-pic-container {
+                width: 240px !important;
+                height: 240px !important;
+            }
+            
+            .section-padding {
+                padding-top: 4rem !important;
+                padding-bottom: 3rem !important;
+            }
+            
+            .mobile-text-lg {
+                font-size: 1.125rem !important;
+            }
+            
+            .mobile-padding {
+                padding: 1.25rem !important;
+            }
+        }
+        
+        .profile-border-gradient {
+            border: 4px solid transparent;
+            background: linear-gradient(var(--bg), var(--bg)) padding-box,
+                        linear-gradient(135deg, #7b5eff, #ff61d2) border-box;
+        }
+        
+        [data-theme="light"] .profile-border-gradient {
+            background: linear-gradient(var(--bg), var(--bg)) padding-box,
+                        linear-gradient(135deg, #7b5eff, #ff61d2) border-box;
+        }
+        
+        .project-image-container {
+            width: 100%;
+            height: 250px;
             overflow: hidden;
             position: relative;
-            background: linear-gradient(45deg, #1a1a2e, #2a1a3a); /* fallback kalau gambar gagal load */
         }
-
-        .project-img img {
-            position: absolute;
-            top: 0;
-            left: 0;
+        
+        @media (min-width: 640px) {
+            .project-image-container {
+                height: 280px;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .project-image-container {
+                height: 300px;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .project-image-container {
+                height: 320px;
+            }
+        }
+        
+        .project-image-full {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: top center;
-            transition: transform 0.45s ease;
-        }
-        
-        .project-card:hover .project-img img {
-            transform: scale(1.06);      /* efek zoom halus pas hover, biar lebih hidup */
-        }
-
-        .project-info {
-            padding: 1.8rem;
-        }
-
-        .project-info h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.6rem;
-        }
-
-        .date {
-            color: var(--primary);
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .project-info p {
-            color: var(--text-muted);
-            font-size: 0.97rem;
-            margin-bottom: 1.4rem;
-        }
-
-        .tags span {
-            background: rgba(123,94,255,0.15);
-            color: var(--primary);
-            padding: 5px 14px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            margin-right: 8px;
-            margin-bottom: 8px;
-            display: inline-block;
-        }
-
-        /* Contact */
-        #contact {
-            background: linear-gradient(to bottom, var(--bg), #0a0a14);
-            padding: 8rem 0 6rem;
-        }
-
-        .contact-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            background: var(--bg-card);
-            backdrop-filter: var(--blur);
-            border: 1px solid rgba(123,94,255,0.15);
-            padding: 1rem 1.8rem;
-            border-radius: 50px;
-            transition: var(--transition);
-        }
-
-        .contact-item:hover {
-            transform: translateY(-6px);
-            border-color: var(--primary);
-            box-shadow: 0 0 30px rgba(123,94,255,0.25);
-        }
-
-        .contact-item i {
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 5rem;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            opacity: 0.8;
-        }
-
-        /* Responsive */
-        @media (max-width: 900px) {
-            .hero-content { grid-template-columns: 1fr; text-align: center; }
-            .hero-image { margin-top: 3rem; }
-            .profile-pic { width: 280px; height: 280px; }
-            .nav-links { gap: 1.5rem; }
-        }
-
-        @media (max-width: 600px) {
-            .nav-links { gap: 1rem; font-size: 0.95rem; }
-            .section-title { font-size: 2.2rem; }
+            transition: transform 0.5s ease;
         }
     </style>
 </head>
-<body>
-
-    <nav>
-        <div class="container nav-wrapper">
-            <a href="#" class="logo">Muti</a>
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact" class="btn-contact">Contact</a>
+<body data-theme="dark" class="overflow-x-hidden">
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 py-4 glass-card border-b border-purple-500/15">
+        <div class="custom-container">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold gradient-text">Muti</a>
+                
+                <!-- Mobile menu button and theme toggle -->
+                <div class="flex items-center space-x-4 lg:hidden">
+                    <!-- Theme toggle button for mobile -->
+                    <button id="theme-toggle-mobile" class="text-gray-300 hover:text-purple-500 transition duration-300 transform hover:scale-110">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    
+                    <!-- Mobile menu button -->
+                    <button id="mobile-menu-button" class="text-xl text-gray-300 focus:outline-none px-2">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                
+                <!-- Desktop menu -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#about" class="text-gray-300 hover:text-white dark:hover:text-white transition duration-300 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-purple-600 after:to-pink-500 after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full">About</a>
+                    <a href="#skills" class="text-gray-300 hover:text-white dark:hover:text-white transition duration-300 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-purple-600 after:to-pink-500 after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full">Skills</a>
+                    <a href="#projects" class="text-gray-300 hover:text-white dark:hover:text-white transition duration-300 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-purple-600 after:to-pink-500 after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full">Projects</a>
+                    
+                    <button id="theme-toggle" class="text-gray-300 hover:text-purple-500 transition duration-300 transform hover:scale-110">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    
+                    <a href="#contact" class="gradient-bg text-white px-6 py-2 rounded-full font-semibold shadow-lg shadow-purple-500/30 hover:shadow-purple-500/45 hover:-translate-y-1 transition duration-300">Contact</a>
+                </div>
+            </div>
+            
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="lg:hidden hidden mt-4 py-4 px-6 glass-card rounded-xl mx-1">
+                <div class="flex flex-col space-y-4">
+                    <a href="#about" class="text-gray-300 hover:text-purple-500 dark:hover:text-white transition duration-300 py-1">About</a>
+                    <a href="#skills" class="text-gray-300 hover:text-purple-500 dark:hover:text-white transition duration-300 py-1">Skills</a>
+                    <a href="#projects" class="text-gray-300 hover:text-purple-500 dark:hover:text-white transition duration-300 py-1">Projects</a>
+                    
+                    <a href="#contact" class="gradient-bg text-white px-6 py-2 rounded-full font-semibold text-center shadow-lg shadow-purple-500/30 mt-2">Contact</a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h3>Halo, saya</h3>
-                    <h1>Mutiara Az Zahra</h1>
-                    <p>Mahasiswa Teknologi Informasi</p>
-                    <div class="cta-group">
-                        <a href="#projects" class="btn-primary">Lihat Projek</a>
-                        <a href="#contact" class="btn-outline">Hubungi Saya</a>
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center pt-20 lg:pt-0 hero-section">
+        <div class="custom-container">
+            <div class="flex flex-col lg:flex-row items-center justify-between">
+                <!-- Text Content -->
+                <div class="lg:w-1/2 text-center lg:text-left mb-12 lg:mb-0 px-2 sm:px-0">
+                    <h3 class="text-lg sm:text-xl text-purple-500 mb-2">Halo, saya</h3>
+                    <h1 class="text-3xl xs:text-4xl sm:text-5xl lg:text-7xl font-bold gradient-text leading-tight mb-4">Mutiara Az Zahra</h1>
+                    <p class="text-base sm:text-lg lg:text-xl text-gray-300 mb-8">Mahasiswa Teknologi Informasi</p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
+                        <a href="#projects" class="gradient-bg text-white px-5 sm:px-6 lg:px-8 py-2.5 sm:py-3 rounded-full font-semibold shadow-lg shadow-purple-500/30 hover:shadow-purple-500/45 hover:-translate-y-1 transition duration-300 text-center text-sm sm:text-base">Lihat Projek</a>
+                        <a href="#contact" class="border-2 border-purple-600 text-purple-500 px-5 sm:px-6 lg:px-8 py-2.5 sm:py-3 rounded-full font-semibold hover:bg-purple-600 hover:text-white transition duration-300 text-center text-sm sm:text-base mt-2 sm:mt-0">Hubungi Saya</a>
                     </div>
                 </div>
-
-                <div class="hero-image">
-                    <div class="profile-pic">
-                        <img src="pic/pasfoto.png" alt="Mutiara Az Zahra">
+                
+                <!-- Profile Picture -->
+                <div class="lg:w-1/2 flex justify-center lg:justify-end mt-8 lg:mt-0">
+                    <div class="relative w-56 h-56 xs:w-64 xs:h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 profile-pic-container">
+                        <div class="absolute inset-0 gradient-border rounded-full"></div>
+                        <div class="relative w-full h-full rounded-full p-1">
+                            <img src="pic/pasfoto.png" alt="Mutiara Az Zahra" class="w-full h-full rounded-full object-cover profile-border-gradient">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="section">
-        <div class="container">
-            <h2 class="section-title">Tentang Saya</h2>
-            <p class="about-desc">
-                Saya adalah mahasiswa S1 Teknologi Informasi semester 5 dari Kampus ITB Ahmad Dahlan. Saya tertarik pada pengembangan aplikasi website dan perancangan antarmuka dengan pendekatan modern. Saya fokus menerjemahkan kebutuhan dan ide ke dalam alur sistem, lalu memanfaatkan AI sebagai alat bantu untuk mempercepat penulisan dan iterasi kode.
-                <br> <br>
-                Saat ini saya mencari kesempatan magang untuk belajar dan berkontribusi dalam pengembangan sistem nyata.
+    <!-- About Section -->
+    <section id="about" class="py-12 sm:py-16 lg:py-24 section-padding">
+        <div class="custom-container">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 section-title">Tentang Saya</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="glass-card rounded-2xl p-5 sm:p-6 lg:p-8 xl:p-10 mobile-padding">
+                    <p class="text-gray-300 text-sm sm:text-base lg:text-lg leading-relaxed text-justify">
+                        Saya adalah mahasiswa S1 Teknologi Informasi semester 5 dari Kampus ITB Ahmad Dahlan. Saya tertarik pada pengembangan aplikasi website dan perancangan antarmuka dengan pendekatan modern. Saya fokus menerjemahkan kebutuhan dan ide menjadi alur sistem yang jelas, kemudian memanfaatkan AI sebagai alat bantu untuk mempercepat penulisan kode serta melakukan iterasi desain dengan lebih efisien.
+                        <br><br>
+                        Saat ini saya sedang mencari kesempatan magang di bidang pengembangan web, UI/UX, atau system analysis agar dapat belajar lebih dalam dan berkontribusi pada proyek nyata.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-12 sm:py-16 lg:py-24 section-padding">
+        <div class="custom-container">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 section-title">Keahlian</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <div class="glass-card rounded-2xl p-5 sm:p-6 lg:p-8 text-center hover:border-purple-500 hover:-translate-y-2 transition duration-300 flex flex-col items-center justify-center min-h-[160px] sm:min-h-[180px] lg:min-h-[200px]">
+                    <i class="fab fa-html5 text-3xl sm:text-4xl lg:text-5xl gradient-text mb-3 sm:mb-4"></i>
+                    <span class="font-semibold text-base sm:text-lg lg:text-xl">HTML & CSS</span>
+                </div>
+                
+                <div class="glass-card rounded-2xl p-5 sm:p-6 lg:p-8 text-center hover:border-purple-500 hover:-translate-y-2 transition duration-300 flex flex-col items-center justify-center min-h-[160px] sm:min-h-[180px] lg:min-h-[200px]">
+                    <i class="fab fa-js text-3xl sm:text-4xl lg:text-5xl gradient-text mb-3 sm:mb-4"></i>
+                    <span class="font-semibold text-base sm:text-lg lg:text-xl">JavaScript</span>
+                </div>
+                
+                <div class="glass-card rounded-2xl p-5 sm:p-6 lg:p-8 text-center hover:border-purple-500 hover:-translate-y-2 transition duration-300 flex flex-col items-center justify-center min-h-[160px] sm:min-h-[180px] lg:min-h-[200px]">
+                    <i class="fab fa-php text-3xl sm:text-4xl lg:text-5xl gradient-text mb-3 sm:mb-4"></i>
+                    <span class="font-semibold text-base sm:text-lg lg:text-xl">PHP & MySQL</span>
+                </div>
+                
+                <div class="glass-card rounded-2xl p-5 sm:p-6 lg:p-8 text-center hover:border-purple-500 hover:-translate-y-2 transition duration-300 flex flex-col items-center justify-center min-h-[160px] sm:min-h-[180px] lg:min-h-[200px]">
+                    <i class="fab fa-react text-3xl sm:text-4xl lg:text-5xl gradient-text mb-3 sm:mb-4"></i>
+                    <span class="font-semibold text-base sm:text-lg lg:text-xl">React.js</span>
+                </div>
+                
+                <div class="glass-card rounded-2xl p-5 sm:p-6 lg:p-8 text-center hover:border-purple-500 hover:-translate-y-2 transition duration-300 flex flex-col items-center justify-center min-h-[160px] sm:min-h-[180px] lg:min-h-[200px]">
+                    <i class="fas fa-pen-nib text-3xl sm:text-4xl lg:text-5xl gradient-text mb-3 sm:mb-4"></i>
+                    <span class="font-semibold text-base sm:text-lg lg:text-xl">UI/UX Design</span>
+                </div>
+                
+                <div class="glass-card rounded-2xl p-5 sm:p-6 lg:p-8 text-center hover:border-purple-500 hover:-translate-y-2 transition duration-300 flex flex-col items-center justify-center min-h-[160px] sm:min-h-[180px] lg:min-h-[200px]">
+                    <i class="fas fa-project-diagram text-3xl sm:text-4xl lg:text-5xl gradient-text mb-3 sm:mb-4"></i>
+                    <span class="font-semibold text-base sm:text-lg lg:text-xl">System Analysis</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-12 sm:py-16 lg:py-24 section-padding">
+        <div class="custom-container">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 section-title">Project</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 lg:gap-8">
+                <!-- Project 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden hover:border-purple-500 hover:-translate-y-2 transition duration-300 group">
+                    <div class="project-image-container">
+                        <img src="pic/absensi.png" alt="Sistem Absensi RFID" class="project-image-full group-hover:scale-110">
+                    </div>
+                    <div class="p-4 sm:p-5 lg:p-6">
+                        <h3 class="text-lg sm:text-xl font-bold mb-2">Sistem Absensi Berbasis RFID</h3>
+                        <span class="text-purple-500 font-semibold text-xs sm:text-sm mb-3 block">2024 – 2025</span>
+                        <p class="text-gray-300 mb-4 text-justify text-sm sm:text-base">
+                            Berperan sebagai UI/UX Designer dan Frontend Developer dalam pengembangan sistem absensi berbasis RFID yang terintegrasi dengan website. Merancang antarmuka yang intuitif serta mengimplementasikan tampilan menggunakan HTML, CSS, dan JavaScript dengan fokus pada kemudahan penggunaan sehari-hari.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag px-3 py-1 rounded-full text-xs sm:text-sm">HTML</span>
+                            <span class="tag px-3 py-1 rounded-full text-xs sm:text-sm">CSS</span>
+                            <span class="tag px-3 py-1 rounded-full text-xs sm:text-sm">JS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden hover:border-purple-500 hover:-translate-y-2 transition duration-300 group">
+                    <div class="project-image-container">
+                        <img src="pic/ecom.png" alt="Website E-commerce" class="project-image-full group-hover:scale-110">
+                    </div>
+                    <div class="p-4 sm:p-5 lg:p-6">
+                        <h3 class="text-lg sm:text-xl font-bold mb-2">Website E-commerce Modern</h3>
+                        <span class="text-purple-500 font-semibold text-xs sm:text-sm mb-3 block">2024</span>
+                        <p class="text-gray-300 mb-4 text-justify text-sm sm:text-base">
+                            Mengembangkan website e-commerce menggunakan HTML, CSS, JavaScript, PHP, dan MySQL dengan desain modern, clean, serta navigasi yang jelas. Fokus utama pada pengalaman pengguna yang nyaman dan penonjolan produk yang menarik.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag px-3 py-1 rounded-full text-xs sm:text-sm">PHP</span>
+                            <span class="tag px-3 py-1 rounded-full text-xs sm:text-sm">MySQL</span>
+                            <span class="tag px-3 py-1 rounded-full text-xs sm:text-sm">UI Modern</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden hover:border-purple-500 hover:-translate-y-2 transition duration-300 group">
+                    <div class="project-image-container">
+                        <img src="pic/inventaris2.png" alt="Sistem Inventaris" class="project-image-full group-hover:scale-110">
+                    </div>
+                    <div class="p-4 sm:p-5 lg:p-6">
+                        <h3 class="text-lg sm:text-xl font-bold mb-2">Sistem Inventaris Kantor</h3>
+                        <span class="text-purple-500 font-semibold text-xs sm:text-sm mb-3 block">2025</span>
+                        <p class="text-gray-300 mb-4 text-justify text-sm sm:text-base">
+                            Proyek mata kuliah RPL berupa website pengelolaan inventaris kantor lengkap dengan DFD, ERD, fitur manajemen data, dan laporan. Membantu memahami proses analisis kebutuhan hingga implementasi sistem berbasis web secara utuh.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag px-3 py-1 rounded-full text-xs sm:text-sm">System Design</span>
+                            <span class="tag px-3 py-1 rounded-full text-xs sm:text-sm">Web App</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="glass-card rounded-2xl overflow-hidden hover:border-purple-500 hover:-translate-y-2 transition duration-300 group">
+                    <div class="project-image-container">
+                        <img src="pic/reactunj2.png" alt="Website Universitas React" class="project-image-full group-hover:scale-110">
+                    </div>
+                    <div class="p-4 sm:p-5 lg:p-6">
+                        <h3 class="text-lg sm:text-xl font-bold mb-2">Website Universitas (React Clone)</h3>
+                        <span class="text-purple-500 font-semibold text-xs sm:text-sm mb-3 block">2026</span>
+                        <p class="text-gray-300 mb-4 text-justify text-sm sm:text-base">
+                            Tugas frontend website universitas menggunakan React.js dengan penekanan pada struktur komponen yang modular, antarmuka yang rapi, serta penyajian informasi yang mudah dibaca dan diakses.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag px-3 py-1 rounded-full text-xs sm:text-sm">React.js</span>
+                            <span class="tag px-3 py-1 rounded-full text-xs sm:text-sm">Frontend</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12 sm:py-16 lg:py-24 section-padding">
+        <div class="custom-container">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 section-title">Hubungi Saya</h2>
+            
+            <p class="text-gray-300 text-center max-w-2xl mx-auto mb-6 sm:mb-8 lg:mb-12 text-sm sm:text-base lg:text-lg">
+                Terbuka untuk kolaborasi, diskusi proyek, kesempatan magang, atau tawaran kerja profesional.
             </p>
-        </div>
-    </section>
-
-    <section id="skills" class="section">
-        <div class="container">
-            <h2 class="section-title">Keahlian</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <i class="fab fa-html5"></i>
-                    <span>HTML & CSS</span>
-                </div>
-                <div class="skill-card">
-                    <i class="fab fa-js"></i>
-                    <span>JavaScript</span>
-                </div>
-                <div class="skill-card">
-                    <i class="fab fa-php"></i>
-                    <span>PHP & MySQL</span>
-                </div>
-                <div class="skill-card">
-                    <i class="fab fa-react"></i>
-                    <span>React.js</span>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-pen-nib"></i>
-                    <span>UI/UX Design</span>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-project-diagram"></i>
-                    <span>System Analysis</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="section">
-        <div class="container">
-            <h2 class="section-title">Project</h2>
-            <div class="projects-grid">
-
-                <div class="project-card">
-                    <div class="project-img">
-                        <img src="pic/absensi.png">
-                    </div>
-                    <div class="project-info">
-                        <h3>Sistem Absensi Berbasis RFID</h3>
-                        <span class="date">2024 – 2025</span>
-                        <p>Berperan sebagai UI/UX Designer dan Frontend Developer dalam pengembangan sistem absensi
-                        berbasis RFID yang terintegrasi dengan website.
-
-                        Saya merancang antarmuka dan mengimplementasikannyamenggunakan HTML, CSS, dan
-                        JavaScript, dengan fokus pada tampilan yang sederhana, mudah digunakan, dan fungsional untuk kebutuhan absensi harian.
-                        </p>
-                        <div class="tags">
-                            <span>HTML</span><span>CSS</span><span>JS</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-img"><img src="pic/ecom.png"></div>
-                    <div class="project-info">
-                        <h3>Website E-commerce Modern</h3>
-                        <span class="date">2024</span>
-                        <p>Mengembangkan website ecommerce menggunakan HTML, CSS, JS, PHP, dan MySQL dengan konsep modern dan clean.
-                        Website difokuskan pada visual yang rapi, alur navigasi yang jelas, serta penonjolan
-                        produk yang memenuhi kepuasan pengalaman pengguna.</p>
-                        <div class="tags">
-                            <span>PHP</span><span>MySQL</span><span>UI Modern</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-img"><img src="pic/inventaris2.png" alt=""></div>
-                    <div class="project-info">
-                        <h3>Sistem Inventaris Kantor</h3>
-                        <span class="date">2025</span>
-                        <p>Website inventaris kantor sesuai ketentuan mata kuliah RPL, dilengkapi dengan DFD,
-                        ERD, serta fitur pengelolaan data dan laporan.
-                        Tugas ini membantu saya memahami proses analisis kebutuhan, perancangan sistem, hingga implementasi aplikasi berbasis web.
-                        </p>
-                        <div class="tags">
-                            <span>System Design</span><span>Web App</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-img"><img src="pic/reactunj2.png" alt=""></div>
-                    <div class="project-info">
-                        <h3>Website Universitas (React Clone)</h3>
-                        <span class="date">2026</span>
-                        <p>Hasil tugas pengembangan website universitas pada sisi frontend menggunakan React.js, dengan
-                        fokus pada struktur komponen, tampilan antarmuka, dan penyajian informasi yang rapi serta mudah diakses.
-                        </p>
-                        <div class="tags">
-                            <span>React.js</span><span>Frontend</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="container">
-            <h2 class="section-title">Hubungi Saya</h2>
-            <p style="text-align:center; color:var(--text-muted); max-width:600px; margin:0 auto 3rem;">
-                Terbuka untuk kolaborasi, diskusi proyek, atau kesempatan magang/profesional.
-            </p>
-
-            <div class="contact-wrapper">
-                <a href="mailto:mutiarazhr25@gmail.com" class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>mutiarazhr25@gmail.com</span>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto">
+                <a href="mailto:mutiarazhr25@gmail.com" class="glass-card rounded-2xl p-4 sm:p-5 lg:p-6 flex flex-col items-center text-center hover:border-purple-500 hover:-translate-y-2 transition duration-300">
+                    <i class="fas fa-envelope text-xl sm:text-2xl lg:text-3xl text-purple-500 mb-3 sm:mb-4"></i>
+                    <span class="font-medium text-xs sm:text-sm lg:text-base">mutiarazhr25@gmail.com</span>
                 </a>
-                <a href="https://wa.me/6285890300691" class="contact-item">
-                    <i class="fab fa-whatsapp"></i>
-                    <span>+62 858-9030-0691</span>
+                
+                <a href="https://wa.me/6285890300691" class="glass-card rounded-2xl p-4 sm:p-5 lg:p-6 flex flex-col items-center text-center hover:border-purple-500 hover:-translate-y-2 transition duration-300">
+                    <i class="fab fa-whatsapp text-xl sm:text-2xl lg:text-3xl text-purple-500 mb-3 sm:mb-4"></i>
+                    <span class="font-medium text-xs sm:text-sm lg:text-base">+62 858-9030-0691</span>
                 </a>
-                <a href="https://www.linkedin.com/in/mutiara-az-zahra-a4460827a" class="contact-item">
-                    <i class="fab fa-linkedin"></i>
-                    <span>LinkedIn</span>
+                
+                <a href="https://www.linkedin.com/in/mutiara-az-zahra-a4460827a" class="glass-card rounded-2xl p-4 sm:p-5 lg:p-6 flex flex-col items-center text-center hover:border-purple-500 hover:-translate-y-2 transition duration-300">
+                    <i class="fab fa-linkedin text-xl sm:text-2xl lg:text-3xl text-purple-500 mb-3 sm:mb-4"></i>
+                    <span class="font-medium text-xs sm:text-sm lg:text-base">LinkedIn</span>
                 </a>
-                <a href="https://instagram.com/azhmutiara" class="contact-item">
-                    <i class="fab fa-instagram"></i>
-                    <span>@azhmutiara</span>
+                
+                <a href="https://instagram.com/azhmutiara" class="glass-card rounded-2xl p-4 sm:p-5 lg:p-6 flex flex-col items-center text-center hover:border-purple-500 hover:-translate-y-2 transition duration-300">
+                    <i class="fab fa-instagram text-xl sm:text-2xl lg:text-3xl text-purple-500 mb-3 sm:mb-4"></i>
+                    <span class="font-medium text-xs sm:text-sm lg:text-base">@azhmutiara</span>
                 </a>
             </div>
-
-            <footer>
-                <p>© 2026 Mutiara Az Zahra • Built with ♡ & futuristic vibes</p>
+            
+            <footer class="mt-8 sm:mt-12 lg:mt-16 text-center text-gray-400">
+                <p class="text-xs sm:text-sm lg:text-base">© 2026 Mutiara Az Zahra • Built with ♡ & futuristic vibes</p>
             </footer>
         </div>
     </section>
 
+    <script>
+        // Theme toggle
+        const toggleBtn = document.getElementById('theme-toggle');
+        const toggleBtnMobile = document.getElementById('theme-toggle-mobile');
+        const body = document.body;
+        
+        const savedTheme = localStorage.getItem('theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        
+        if (savedTheme === 'light') {
+            body.setAttribute('data-theme', 'light');
+            updateThemeIcons('light');
+        } else {
+            body.setAttribute('data-theme', 'dark');
+            updateThemeIcons('dark');
+        }
+        
+        function updateThemeIcons(theme) {
+            const icons = document.querySelectorAll('.fa-moon, .fa-sun');
+            icons.forEach(icon => {
+                if (theme === 'light') {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+            });
+        }
+        
+        function toggleTheme() {
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                updateThemeIcons('light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                updateThemeIcons('dark');
+            }
+        }
+        
+        toggleBtn?.addEventListener('click', toggleTheme);
+        toggleBtnMobile?.addEventListener('click', toggleTheme);
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton?.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuButton.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+        
+        // Close mobile menu
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.querySelector('i').classList.replace('fa-times', 'fa-bars');
+            });
+        });
+        
+        document.addEventListener('click', (event) => {
+            if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target) && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.querySelector('i').classList.replace('fa-times', 'fa-bars');
+            }
+        });
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuButton.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                    }
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Responsive adjustments
+        function handleResize() {
+            if (window.innerWidth >= 1024) {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.querySelector('i').classList.replace('fa-times', 'fa-bars');
+            }
+        }
+        
+        window.addEventListener('resize', handleResize);
+    </script>
 </body>
 </html>
